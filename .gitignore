@@ -1,0 +1,5 @@
+# Jangan upload config.js yang berisi token asli
+config.js
+
+# macOS
+.DS_Store

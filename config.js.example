@@ -1,0 +1,8 @@
+// Template untuk konfigurasi Telegram
+// Copy file ini jadi config.js dan isi dengan token asli kamu
+// config.js sudah di-.gitignore jadi aman
+
+window.TELEGRAM_CONFIG = {
+    botToken: 'ISI_TOKEN_BOT_DISINI',
+    chatId: 'ISI_CHAT_ID_DISINI'
+};

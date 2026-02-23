@@ -1,7 +1,35 @@
 let musicPlaying = false
 
+// Telegram Bot Configuration - dari config.js atau environment
+const telegramConfig = window.TELEGRAM_CONFIG || { botToken: '', chatId: '' }
+
+// Send notification to Telegram
+async function sendTelegramNotification() {
+    if (!telegramConfig.botToken || !telegramConfig.chatId) {
+        console.log('Telegram config tidak ditemukan, skip notifikasi')
+        return
+    }
+
+    const message = '🎉 Ce Nisa bersedia video call nanti malem! 💕'
+    const url = `https://api.telegram.org/bot${telegramConfig.botToken}/sendMessage`
+
+    try {
+        await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: telegramConfig.chatId,
+                text: message
+            })
+        })
+    } catch (error) {
+        console.log('Gagal kirim notif:', error)
+    }
+}
+
 window.addEventListener('load', () => {
     launchConfetti()
+    sendTelegramNotification() // Kirim notif ke Telegram
 
     // Autoplay music (works since user clicked Yes to get here)
     const music = document.getElementById('bg-music')
